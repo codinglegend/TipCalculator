@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
 @property (weak, nonatomic) IBOutlet UITextField *tipPercentageTextField;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (nonatomic) float tipAmount;
 
 @end
 
@@ -38,13 +40,40 @@
     float customCalculation = customPercentage/100*textInputToNumber;
     
     if ([self.tipPercentageTextField.text isEqualToString:@""]){
-        self.tipAmountLabel.text = [NSString stringWithFormat:@"The tip is: %f", tipCalculation];
+        self.tipAmountLabel.text = [NSString stringWithFormat:@"The tip is: %.2f", tipCalculation];
     }else{
-        self.tipAmountLabel.text = [NSString stringWithFormat:@"Custom tip is: %f", customCalculation];
+        self.tipAmountLabel.text = [NSString stringWithFormat:@"Custom tip is: %.2f", customCalculation];
     }
         
-    
 }
+
+
+
+- (IBAction)adjustTipPercentage:(id)sender {
+    
+//    float customPercentage = self.slider.value;
+//    float customCalculation = customPercentage/100*textInputToNumber;
+//    
+//    customerTextInput = ;
+//    [customTextInput self.slider.value];
+    
+    //self.tipAmount = self.slider.value;
+    
+    // update teh contents of the custo tip field.
+    
+    NSString *tipString = [NSString stringWithFormat:@"%.2f", self.slider.value];
+    
+    
+    self.tipPercentageTextField.text = tipString;
+//    the two lines below are the same thing as the above...they accomplish the same thing
+    
+//    _tipPercentageTextField.text = tipString;
+//    [self.tipPercentageTextField setText:tipString];
+    
+    [self calculateTip:nil];
+
+}
+
 
 
 
